@@ -1,4 +1,5 @@
 from __future__ import annotations
+from datetime import datetime
 import os
 from typing import Dict, Any
 import joblib
@@ -14,6 +15,11 @@ logger = logging.getLogger("heart-disease-api")
 
 app = FastAPI(title="Heart Disease Prediction API", version="1.0.0")
 
+STATE = {
+    "total_requests": 0,
+    "total_predictions": 0,
+    "last_prediction_time": None
+}
 
 class HeartFeatures(BaseModel):
     age: float = Field(..., description="Age in years")
@@ -51,6 +57,14 @@ def get_model():
         _model = joblib.load(MODEL_PATH)
     return _model
 
+@app.get("/metrics")
+def get_metrics():
+    """Simple API metrics dashboard endpoint"""
+    return {
+        "status": "healthy",
+        "metrics": STATE,
+        "timestamp": datetime.now().isoformat()
+    }
 
 @app.get("/health")
 def health() -> Dict[str, Any]:
