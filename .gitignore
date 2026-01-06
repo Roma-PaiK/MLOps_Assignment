@@ -22,3 +22,6 @@ mlruns/
 
 # Environment variables & Sensitive data
 .env
+artifacts/
+logs/
+mlruns/
