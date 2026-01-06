@@ -1,0 +1,24 @@
+# Python virtual environments
+venv/
+mlops_env/
+env/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# MLflow tracking data
+mlruns/
+.mlruns/
+
+# MacOS system files (Very important for M4 Macs)
+.DS_Store
+
+# Environment variables & Sensitive data
+.env
